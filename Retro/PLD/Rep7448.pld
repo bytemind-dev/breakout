@@ -1,0 +1,84 @@
+/*******************************************************************************
+* File: Breakout\Retro\PLD\Rep7448.pld
+* Desc: 20-Pin Overlay for 7448 for breakout.
+*       Only supports the breakout-used pins RBI, A, B, C, D. No room for more.
+*       Puts out segments a-g. Values A-F put out hex digits instead of crap.
+*-------------------------------------------------------------------------------
+* Footprint: (P=PLD, D=7448 Decoder)
+*   P D +---/\---+  D  P
+*   1 1 |B    VCC| 16 20
+*   2 2 |C      f| 15 19
+*   3 3 |!LT    g| 14 18
+*   4 4 |!BI/BO a| 13 17
+*   5 5 |!RBI   b| 12 16
+*   6 6 |D      c| 11 15
+*   7 7 |A      d| 10 14
+*   8 8 |GND    e|  9 13
+*       +--------+
+*   9 x |INV !RBO|  x 12
+*  10 x |GBD    -|  x 11
+*       +--------+
+*-------------------------------------------------------------------------------
+* Notice : Copyright (c) 2025 - ByteMind, Inc. - All Rights Reserved
+*          Beerware License - You can do whatever, just buy someone a beer.
+*-------------------------------------------------------------------------------
+* History:
+*   2025-11-05, v0.0, P.Bishop, Created
+*******************************************************************************/
+Name     Rep7448;
+PartNo   00;
+Date     2025-11-05;
+Revision 01;
+Designer P.Bishop;
+Company  ByteMind, Inc.;
+Assembly None;
+Location ;
+Device   G16V8AS; /* ATMEL ATF16V8B-15PU 20-Pin 0.3" DIP $1.22 */
+
+$DEFINE | #
+$DEFINE ^ $
+
+/* *************** INPUT PINS *********************/
+PIN 1 = B;
+PIN 2 = C;
+PIN 3 = !LT;  /* Future: not enough room here */
+PIN 4 = !BI;  /* Future: RBO is separate */
+PIN 5 = !RBI; /* Use this for blanking */
+PIN 6 = D;
+PIN 7 = A;
+PIN 8 = GND;  /* Reference for GND pin in 7448 */
+PIN 9 = INV;  /* Future: 0=7447, 1=7448 */
+
+/* *************** OUTPUT PINS *********************/
+PIN 19 = f;
+PIN 18 = g;
+PIN 17 = a;
+PIN 16 = b;
+PIN 15 = c;
+PIN 14 = d;
+PIN 13 = e;
+PIN 12 = !RBO;   /* Future */
+PIN 11 = UNUSED; /* Reference */
+
+FIELD segs = [a, b, c, d, e, f, g];
+FIELD data = [D, C, B, A];
+FIELD temp = [s6..0];
+TABLE data => temp {
+  'h'0=>'b'1111110;
+  'h'1=>'b'0110000;
+  'h'2=>'b'1101101;
+  'h'3=>'b'1111001;
+  'h'4=>'b'0110011;
+  'h'5=>'b'1011011;
+  'h'6=>'b'1011111;
+  'h'7=>'b'1110000;
+  'h'8=>'b'1111111;
+  'h'9=>'b'1111011;
+  'h'A=>'b'1110111;
+  'h'b=>'b'0011111;
+  'h'C=>'b'1001110;
+  'h'd=>'b'0111101;
+  'h'E=>'b'1001111;
+  'h'F=>'b'1000111;
+}
+segs = (!RBI & temp);
