@@ -1,0 +1,142 @@
+(footprint "Conn_TermBlock-2P"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 5.85 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "58e9989d-cd04-405b-b816-7b390acd9a26")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.2032)
+			)
+		)
+	)
+	(property "Value" "Conn_TermBlock-2P"
+		(at 0 7.35 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "b9f87daf-a1bd-403e-9719-d67601340a9c")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9466d8ca-ee77-46f6-a7ce-47caeefaabe4")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "acb67fa8-c849-4b34-aa03-fce48b65b298")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ebd1aab4-44b5-49b0-992a-f27e60053566")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_rect
+		(start -5 -3.5)
+		(end 5 4)
+		(stroke
+			(width 0.254)
+			(type default)
+		)
+		(fill none)
+		(layer "B.SilkS")
+		(uuid "75a1fb6a-aaa5-404e-87cf-dff9510b29ab")
+	)
+	(fp_rect
+		(start -5 -3.5)
+		(end 5 4)
+		(stroke
+			(width 0.254)
+			(type default)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "cee30f2b-ea0b-4790-bd15-c94d96af5665")
+	)
+	(fp_rect
+		(start -5.25 -3.75)
+		(end 5.25 4.25)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "b0887c63-cd0f-4aff-a256-a0bc8384928c")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 -5.12 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "4ab7b892-a689-4618-a1ef-476a6e5135a4")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole circle
+		(at -2.5 0)
+		(size 3 3)
+		(drill 1.3)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "6f64508e-94ae-4480-8a4c-d1f45435b433")
+	)
+	(pad "2" thru_hole circle
+		(at 2.5 0)
+		(size 3 3)
+		(drill 1.3)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "9ff17db3-eb08-478c-aa03-7f0add9c41bf")
+	)
+	(model "D:/PCB/3dModels/Conn_TermBlock_2P.step"
+		(offset
+			(xyz -5 -4 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

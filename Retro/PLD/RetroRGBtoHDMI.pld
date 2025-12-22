@@ -1,0 +1,67 @@
+/*******************************************************************************
+* File: Breakout\Retro\PLD\RetroRGBtoHDMI.pld
+* Desc: Converts Retro Breakout UI signals to 6-Bit RGB for RGBtoHDMI adapter
+*-------------------------------------------------------------------------------
+* Note: PLD Output Pins optimized for connector routing on the PCB
+*         PLC                        RGBtoHDMI
+*     +----/\----+                   +-------+
+*   1 |PSYNC  VCC| 20      GND -> R1 | 1   2 | B1 <- GND
+*   2 |BSYNC   G2| 19            GND | 3   4 | G2 <- G2
+*   3 |SCORE   B2| 18       R2 -> R2 | 5   6 | B2 <- B2
+*   4 |BOUND   R2| 17       R3 -> R3 | 7   8 | HS <- !HSQ
+*   5 |BRICKS  R3| 16       G3 -> G3 | 9  10 | VS <- !VSQ
+*   6 |H8      G3| 15       B3 -> B3 | 11 12 | VCC
+*   7 |H16     B3| 14                +-------+
+*   8 |!HS   !HSQ| 13
+*   9 |!VS   !VSQ| 12       Bit Weights: R321;G321;B321
+*  10 |GBD      -| 11
+*     +----------+
+*-------------------------------------------------------------------------------
+* Notice : Copyright (c) 2025 - ByteMind, Inc. - All Rights Reserved
+*          Beerware License - You can do whatever, just buy someone a beer.
+*-------------------------------------------------------------------------------
+* History:
+*   2025-11-05, v0.0, P.Bishop, Created
+*******************************************************************************/
+
+Name     RetroRGBtoHDMI;
+PartNo   00;
+Date     2025-11-05;
+Revision 01;
+Designer P.Bishop;
+Company  ByteMind, Inc.;
+Assembly None;
+Location ;
+Device   G16V8; /* ATMEL ATF16V8B-15PU 20-Pin 0.3" DIP ~$1.22 */
+
+/* *************** INPUT PINS *********************/
+PIN 1 = PSYNC;
+PIN 2 = BSYNC;
+PIN 3 = SCORE;
+PIN 4 = BOUND;
+PIN 5 = BRICKS;
+PIN 6 = H8;
+PIN 7 = H16;
+PIN 8 = !HSYNC;
+PIN 9 = !VSYNC;
+
+/* *************** OUTPUT PINS *********************/
+PIN 19 = G2;
+PIN 18 = B2;
+PIN 17 = R2;
+PIN 16 = R3;
+PIN 15 = G3;
+PIN 14 = B3;
+PIN 13 = !RGB_HSYNC;
+PIN 12 = !RGB_VSYNC;
+
+$DEFINE | #
+
+B2 = PSYNC|SCORE|BSYNC;
+B3 = B2|BOUND;
+G2 = B2|(BRICKS&H8&H16);
+G3 = SCORE|BSYNC|BOUND|(BRICKS&(H8|H16));
+R2 = SCORE|BSYNC|(BRICKS&((H8&H16)|!H16));
+R3 = R2|BOUND;
+!RGB_HSYNC = !HSYNC;
+!RGB_VSYNC = !VSYNC|BOUND;

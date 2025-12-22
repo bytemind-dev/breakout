@@ -1,0 +1,247 @@
+(footprint "Head_1x3_0.1in"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "Through hole straight pin header, 1x25, 2.54mm pitch, single row")
+	(tags "Through hole pin header THT 1x25 2.54mm single row")
+	(property "Reference" "${Reference}"
+		(at 0 -2.54 0)
+		(layer "F.SilkS")
+		(uuid "f6ce164c-cb06-405c-9f1c-c036e57af60b")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.2032)
+			)
+		)
+	)
+	(property "Value" "Head_1x3_0.1in"
+		(at 0 8.045 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "63c9bcfc-4805-4d24-a2f2-acf195b068be")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4466daf6-05b8-4bcf-aceb-52c84c00303e")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "8b863aaf-e3f1-404d-a008-72218a959ece")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -1.27 -1.27)
+		(end 1.27 -1.27)
+		(stroke
+			(width 0.2032)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "8131c63e-51bf-4047-b440-3b8c2ffc91f6")
+	)
+	(fp_line
+		(start -1.27 6.35)
+		(end -1.27 -1.27)
+		(stroke
+			(width 0.2032)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "6b5a1f9a-6b90-4c05-8fd1-05edca83b8d7")
+	)
+	(fp_line
+		(start 1.27 -1.27)
+		(end 1.27 6.35)
+		(stroke
+			(width 0.2032)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "cb218c9e-a906-4236-813b-52b5188ac2a2")
+	)
+	(fp_line
+		(start 1.27 1.27)
+		(end -1.27 1.27)
+		(stroke
+			(width 0.2032)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "8ba0a5f1-85a8-4d09-93bd-385baf7a8aed")
+	)
+	(fp_line
+		(start 1.27 6.35)
+		(end -1.27 6.35)
+		(stroke
+			(width 0.2032)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "24b207cc-bd5c-4865-969a-b007315a4f2e")
+	)
+	(fp_line
+		(start -1.27 -1.27)
+		(end 1.27 -1.27)
+		(stroke
+			(width 0.2032)
+			(type solid)
+		)
+		(layer "B.SilkS")
+		(uuid "81ba3b23-7c87-42fa-9c59-3032f5a8ac7f")
+	)
+	(fp_line
+		(start -1.27 6.35)
+		(end -1.27 -1.27)
+		(stroke
+			(width 0.2032)
+			(type solid)
+		)
+		(layer "B.SilkS")
+		(uuid "4852bcbd-152a-4e2f-b679-5b484d77b88d")
+	)
+	(fp_line
+		(start 1.27 -1.27)
+		(end 1.27 6.35)
+		(stroke
+			(width 0.2032)
+			(type solid)
+		)
+		(layer "B.SilkS")
+		(uuid "41bdf2f0-8693-4cf1-98a6-06bbe521264d")
+	)
+	(fp_line
+		(start 1.27 1.27)
+		(end -1.27 1.27)
+		(stroke
+			(width 0.2032)
+			(type solid)
+		)
+		(layer "B.SilkS")
+		(uuid "645a3527-b219-4f67-b95e-33595c13c23f")
+	)
+	(fp_line
+		(start 1.27 6.35)
+		(end -1.27 6.35)
+		(stroke
+			(width 0.2032)
+			(type solid)
+		)
+		(layer "B.SilkS")
+		(uuid "99680a04-54ab-43c9-a76e-c00a91b0732e")
+	)
+	(fp_line
+		(start -1.905 -1.905)
+		(end -1.905 6.985)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "e373d009-5163-4b4b-b5fd-069a16d89b0f")
+	)
+	(fp_line
+		(start 1.905 -1.905)
+		(end -1.905 -1.905)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "d40ee9a1-5a66-4c37-8358-093a2943648c")
+	)
+	(fp_line
+		(start 1.905 6.985)
+		(end -1.905 6.985)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "3f24914f-dd1f-41ef-a069-119334d9264d")
+	)
+	(fp_line
+		(start 1.905 6.985)
+		(end 1.905 -1.905)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "83ba479d-f97c-4beb-b6c6-ab4596e4f622")
+	)
+	(fp_text user "${Reference}"
+		(at 0 -2.54 0)
+		(unlocked yes)
+		(layer "B.SilkS")
+		(uuid "aefa12c1-5318-46c8-8e1d-64ee9fabb62a")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.2032)
+			)
+			(justify mirror)
+		)
+	)
+	(pad "1" thru_hole rect
+		(at 0 0)
+		(size 1.7 1.7)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "80572053-1cdd-4baa-a921-5039d8bb05bc")
+	)
+	(pad "2" thru_hole oval
+		(at 0 2.54)
+		(size 1.7 1.7)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "15f9793f-0584-4688-bd34-fdd0259231a1")
+	)
+	(pad "3" thru_hole oval
+		(at 0 5.08)
+		(size 1.7 1.7)
+		(drill 0.9)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "65d8ba09-301b-4070-a0a0-f5a8e9f11307")
+	)
+	(embedded_fonts no)
+	(model "D:/PCB/3dModels/Head_1x3-0.1in.wrl"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

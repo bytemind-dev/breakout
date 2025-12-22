@@ -1,0 +1,3 @@
+-Fab.zip - Gerbers and drill files
+-CPL.csv - JLCPCB component placement data
+-BOM.csv - JLCPCB bill-of-materials

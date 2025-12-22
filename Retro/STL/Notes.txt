@@ -1,0 +1,2 @@
+Rails here are for the bottom (connector to the right).
+You'll need to print a 2nd set for the top, but flipped on the X-Axis.

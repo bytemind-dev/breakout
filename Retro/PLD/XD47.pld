@@ -1,0 +1,155 @@
+/*******************************************************************************
+* File: Breakout\Retro\PLD\XD47.pld
+* Desc: 1.5 Digit Hex/Decimal Decoder
+*-------------------------------------------------------------------------------
+* Notice : Copyright (c) 2025 - ByteMind, Inc. - All Rights Deserved
+*          Beerware License - You can do whatever, just buy someone a beer.
+*-------------------------------------------------------------------------------
+* Notes:
+*  Puts out 0-F or 0-9 on 1x or 00-15 on 2x 7-segment common ANODE displays.
+*   to drive common cathode, remove the ! from the outputs. Note that the
+*   chips sink more current than they source so common anode is more .. common.
+*  Intended as overlay for 7447 footprint, for dual-purpose boards.
+*   7447 only for single-digit dec 0-9 only (or strange chars for A-F).
+*  Floating !BI and X inputs default to visible hex outputs.
+*  9's have d-seg tails. Remove the !D term from the d1 line to remove them.
+*   (6's must have the tails to distinguish from hex 'b')
+*  !LT and !BI/RBO do nothing (no room) but labeled per 7447 pins
+*  For blanking drop !RBI
+*  If there was room I would make pin 11 "T9" which would drop the tail if
+*   pulled down, but the 'd' OR term is full. Perhaps you can figure it out.
+*  The 'h' output drives both segments 'b' and 'c' from the 10s digit.
+*   Each segment should get it's own current-limiting resistor hooked to pin 12.
+*-------------------------------------------------------------------------------
+* Footprint: (P=PLD, D=7447 Decoder)
+*   P D +---/\---+  D  P
+*   1 1 |B    VCC| 16 20
+*   2 2 |C      f| 15 19
+*   3 3 |!LT    g| 14 18
+*   4 4 |!BI/BO a| 13 17
+*   5 5 |!RBI   b| 12 16
+*   6 6 |D      c| 11 15
+*   7 7 |A      d| 10 14
+*   8 8 |GND    e|  9 13
+*       +--------+
+*   9 x |X      h|  x 12
+*  10 x |GND   T9|  x 11
+*       +--------+
+*-------------------------------------------------------------------------------
+* Programming Pins (in addition to VCC/GND:
+*   1 SDI
+*   4 SCLK
+*   9 SDO
+*  11 VPP  (goes to +12V)
+*  Make sure other circuitry can handle if in-system programming is required.
+*-------------------------------------------------------------------------------
+* Decode (outputs are inverse from these to drive common-anode displays)
+*         ---Outputs---
+*  X-DCBA QQ h-abcdefg
+*  ------ -- - -------
+*  x-0000  0 0-1111110 common
+*  x-0001  1 0-0110000 common
+*  x-0010  2 0-1101101 common
+*  x-0011  3 0-1111001 common
+*  x-0100  4 0-0110011 common
+*  x-0101  5 0-1011011 common
+*  x-0110  6 0-1011111 common
+*  x-0111  7 0-1110000 common
+*  x-1000  8 0-1111111 common
+*  x-1001  9 0-1111011 common
+*  0-1010 10 1-1111110 dec
+*  0-1011 11 1-0110000 dec
+*  0-1100 12 1-1101101 dec
+*  0-1101 13 1-1111001 dec
+*  0-1110 14 1-0110011 dec
+*  0-1111 15 1-1011011 dec
+*  1-1010  A 0-1110111 hex
+*  1-1011  b 0-0011111 hex
+*  1-1100  C 0-1001110 hex
+*  1-1101  d 0-0111101 hex
+*  1-1110  E 0-1001111 hex
+*  1-1111  F 0-1000111 hex
+*-------------------------------------------------------------------------------
+* History:
+*   2025-11-05, v0.0, P.Bishop, Created
+*******************************************************************************/
+Name     XD47;
+PartNo   00;
+Date     2025-11-05;
+Revision 01;
+Designer P.Bishop;
+Company  ByteMind, Inc.;
+Assembly None;
+Location ;
+Device   G16V8AS; /* ATMEL ATF16V8B-15PU 20-Pin 0.3" DIP ~$1.22 */
+
+$DEFINE | #
+$DEFINE ^ $
+
+/* *************** INPUT PINS *********************/
+PIN 1 = B;
+PIN 2 = C;
+PIN 3 = !LT;  /* Unused: no room */
+PIN 4 = !BI;  /* Unused: no room */
+PIN 5 = !RBI; /* 0=blank, 1=visible */
+PIN 6 = D;
+PIN 7 = A;
+PIN 8 = GND;  /* Reference for GND pin in 7447/48 */
+PIN 9 = X;    /* 1=HEX, 0=DEC */
+PIN 11 = T9;  /* Unused */
+
+/* *************** OUTPUT PINS *********************/
+PIN 19 = !f;
+PIN 18 = !g;
+PIN 17 = !a;
+PIN 16 = !b;
+PIN 15 = !c;
+PIN 14 = !d;
+PIN 13 = !e;
+PIN 12 = !h; /* 10's digit segments b&c */
+
+a=!(      !D & !C & !B &  A    /* a1       */
+   |      !D &  C & !B & !A    /* a4       */
+   |       D & !C &  B &  A    /* aB       */
+   |  X &  D &  C & !B &  A    /* aD       */
+   | !X &  D &  C &  B & !A    /* a14      */
+   | RBI );
+b=!(      !D &  C & !B &  A    /* b5       */
+   |      !D &  C &  B & !A    /* b6       */
+   |  X &  D      &  B &  A    /* bB,F     */
+   |  X &  D &  C      & !A    /* bC,D     */
+   | !X &  D &  C &  B &  A    /* b15      */
+   | RBI );
+c=!(      !D & !C &  B & !A    /* c2       */
+   |       D &  C & !B & !A    /* cC       */
+   |  X &  D &  C &  B         /* cE,f     */
+   | RBI );
+d=!(      !D & !C & !B &  A    /* d1: for a 9 with no tail, remove the & !D term */
+   |      !D &  C & !B & !A    /* d4       */
+   |      !D &  C &  B &  A    /* d7       */
+   |  X &  D & !C &  B & !A    /* dA       */
+   | !X &  D & !C &  B &  A    /* d11      */
+   | !X &  D &  C &  B & !A    /* d14      */
+   |  X &  D &  C &  B &  A    /* dF       */
+   | RBI );
+e=!(      !D           &  A    /* e1,3,5,7 */
+   |      !D &  C & !B & !A    /* e4       */
+   |       D & !C & !B &  A    /* e9       */
+   | !X &  D      &  B &  A    /* e11,15   */
+   | !X &  D &  C & !B &  A    /* e13      */
+   | !X &  D &  C &  B & !A    /* e15      */
+   | RBI );
+f=!(      !D & !C      &  A    /* f1,3     */
+   |      !D & !C &  B & !A    /* f2       */
+   |      !D &  C &  B &  A    /* f7       */
+   |  X &  D &  C & !B &  A    /* fD       */
+   | !X &  D & !C &  B &  A    /* f11      */
+   | !X &  D &  C & !B         /* f12,13   */
+   | RBI );
+g=!(      !D & !C & !B         /* g0,1     */
+   |      !D &  C &  B &  A    /* g7       */
+   |  X &  D &  C & !B & !A    /* gC       */
+   | !X &  D & !C &  B         /* g10,11   */
+   | RBI );
+h= ( !RBI & !X &  D &  C        /* hC,D,E,F */
+   | !RBI & !X &  D & !C & B ); /* hA,B     */
